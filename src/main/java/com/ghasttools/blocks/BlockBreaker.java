@@ -297,20 +297,76 @@ public class BlockBreaker {
             return false;
         }
 
-        // 3. Check WorldGuard for specific block location
+        // 3. Check block level requirements
+        if (!meetsBlockLevelRequirement(player, block.getType())) {
+            return false;
+        }
+
+        // 4. Check WorldGuard for specific block location
         if (plugin.getWorldGuardHook() != null) {
             if (!plugin.getWorldGuardHook().canUseTools(player, block.getLocation())) {
                 return false;
             }
         }
 
-        // 4. Check if player can break this block type based on tool level
+        // 5. Check if player can break this block type based on tool level
         if (!canPlayerBreakBlockType(player, block.getType())) {
             return false;
         }
 
-        // 5. Check if block can be broken by player (vanilla permissions)
+        // 6. Check if block can be broken by player (vanilla permissions)
         return !block.getType().isAir() && block.getType().getHardness() >= 0;
+    }
+
+    /**
+     * Check if player meets block level requirement
+     */
+    private boolean meetsBlockLevelRequirement(Player player, Material blockType) {
+        try {
+            // Check if player has bypass permission
+            if (player.hasPermission("ghasttools.bypass.levelcheck")) {
+                return true;
+            }
+
+            FileConfiguration config = plugin.getConfigManager().getMainConfig();
+            if (config == null) {
+                return true; // Allow if config not available
+            }
+
+            ConfigurationSection blockLevelSection = config.getConfigurationSection("block-level-requirements");
+            if (blockLevelSection == null) {
+                return true; // No block level requirements configured
+            }
+
+            String blockKey = blockType.name().toLowerCase();
+            if (!blockLevelSection.contains(blockKey)) {
+                return true; // Block not in requirements list
+            }
+
+            int requiredLevel = blockLevelSection.getInt(blockKey, 0);
+            if (requiredLevel <= 0) {
+                return true; // No level requirement
+            }
+
+            // Check player level using levels handler
+            if (plugin.getLevelsHandler() == null) {
+                plugin.getLogger().warning("Levels handler not available for block level check");
+                return true; // Allow if levels handler not available
+            }
+
+            int playerLevel = plugin.getLevelsHandler().getPlayerLevel(player);
+            if (playerLevel < requiredLevel) {
+                plugin.getLogger().fine("Player " + player.getName() + " level " + playerLevel + 
+                                      " insufficient for " + blockType + " (requires " + requiredLevel + ")");
+                return false;
+            }
+
+            return true;
+
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error checking block level requirement", e);
+            return true; // Default to allow on error
+        }
     }
 
     /**

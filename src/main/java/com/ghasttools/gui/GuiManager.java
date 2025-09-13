@@ -547,6 +547,12 @@ public class GuiManager {
                 lore.add("");
                 lore.add("§7Upgrade: §e" + upgradeConfig.getCurrentTier() + " §7→ §a" + upgradeConfig.getTargetTier());
 
+                // Show current balance if economy is available
+                if (isEconomyAvailable()) {
+                    double balance = getPlayerBalance(player);
+                    lore.add("§7Your balance: §e" + formatNumber((long)balance));
+                }
+
             } else {
                 // Tool is at max tier or no upgrade available
                 lore.add("§7This tool is already at maximum tier");

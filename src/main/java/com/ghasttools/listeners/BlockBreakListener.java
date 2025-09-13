@@ -88,7 +88,12 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        // 2. Check WorldGuard permissions for specific block location
+        // 2. Check block level requirements
+        if (!meetsBlockLevelRequirement(player, blockType)) {
+            return false;
+        }
+
+        // 3. Check WorldGuard permissions for specific block location
         if (plugin.getWorldGuardHook() != null) {
             if (!plugin.getWorldGuardHook().canUseTools(player, block.getLocation())) {
                 plugin.getMessageUtil().sendMessage(player, "worldguard_deny");
@@ -96,18 +101,88 @@ public class BlockBreakListener implements Listener {
             }
         }
 
-        // 3. FIXED: For milestone materials, ensure player can actually break this specific block
+        // 4. FIXED: For milestone materials, ensure player can actually break this specific block
         if (plugin.getMilestoneManager() != null &&
                 plugin.getMilestoneManager().isTrackedMaterial(blockType)) {
 
             // Additional validation for milestone materials
             if (!canPlayerBreakMilestoneBlock(player, blockType, block)) {
-
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * Check if player meets block level requirement for specific block type
+     */
+    private boolean meetsBlockLevelRequirement(Player player, Material blockType) {
+        try {
+            // Check if player has bypass permission
+            if (player.hasPermission("ghasttools.bypass.levelcheck")) {
+                return true;
+            }
+
+            FileConfiguration config = plugin.getConfigManager().getMainConfig();
+            if (config == null) {
+                return true; // Allow if config not available
+            }
+
+            ConfigurationSection blockLevelSection = config.getConfigurationSection("block-level-requirements");
+            if (blockLevelSection == null) {
+                return true; // No block level requirements configured
+            }
+
+            String blockKey = blockType.name().toLowerCase();
+            if (!blockLevelSection.contains(blockKey)) {
+                return true; // Block not in requirements list
+            }
+
+            int requiredLevel = blockLevelSection.getInt(blockKey, 0);
+            if (requiredLevel <= 0) {
+                return true; // No level requirement
+            }
+
+            // Check player level using levels handler
+            if (plugin.getLevelsHandler() == null) {
+                plugin.getLogger().warning("Levels handler not available for block level check");
+                return true; // Allow if levels handler not available
+            }
+
+            int playerLevel = plugin.getLevelsHandler().getPlayerLevel(player);
+            if (playerLevel < requiredLevel) {
+                player.sendMessage("§cYou need level " + requiredLevel + " to break " + 
+                                 formatBlockName(blockType) + "!");
+                player.sendMessage("§7Your level: " + playerLevel);
+                return false;
+            }
+
+            return true;
+
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error checking block level requirement", e);
+            return true; // Default to allow on error
+        }
+    }
+
+    /**
+     * Format block name for display
+     */
+    private String formatBlockName(Material material) {
+        if (material == null) return "Unknown";
+        
+        String name = material.name().toLowerCase().replace("_", " ");
+        String[] words = name.split(" ");
+        StringBuilder formatted = new StringBuilder();
+        
+        for (int i = 0; i < words.length; i++) {
+            if (i > 0) formatted.append(" ");
+            formatted.append(Character.toUpperCase(words[i].charAt(0)))
+                     .append(words[i].substring(1));
+        }
+        
+        return formatted.toString();
     }
 
     /**

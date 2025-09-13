@@ -629,6 +629,14 @@ public class GhastToolsPlugin extends JavaPlugin {
             throw new RuntimeException("ProtocolLib initialization failed", e);
         }
 
+        // Check Vault dependency
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            getLogger().severe("Vault is required but not found!");
+            throw new RuntimeException("Vault dependency missing");
+        } else {
+            getLogger().info("Vault found - Economy integration will be enabled");
+        }
+
         // WorldGuard (optional) with proper null checks
         if (getServer().getPluginManager().getPlugin("WorldGuard") != null) {
             try {

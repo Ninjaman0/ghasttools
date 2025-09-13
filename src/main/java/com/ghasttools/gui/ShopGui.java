@@ -149,7 +149,11 @@ public class ShopGui {
         // Add enchantment items in proper order
         addEnchantmentItems(gui, player, tool, toolType, toolTier);
 
+        // Add close item
+        addCloseItem(gui);
+
         // Add filler items
+        addFillerItems(gui);
 
         return gui;
     }
@@ -223,6 +227,69 @@ public class ShopGui {
                 plugin.getLogger().log(Level.WARNING, "Error creating enchantment item: " + enchantmentKey, e);
             }
         }
+    }
+
+    /**
+     * Add configurable close item to shop GUI
+     */
+    private void addCloseItem(Inventory gui) {
+        try {
+            ConfigurationSection closeItemSection = shopConfig.getConfigurationSection("shop.items.close_item");
+            if (closeItemSection == null) {
+                return; // No close item configured
+            }
+
+            Material material = Material.valueOf(closeItemSection.getString("material", "BARRIER"));
+            String name = closeItemSection.getString("name", "&c&lClose Menu");
+            List<String> lore = closeItemSection.getStringList("lore");
+            int customModelData = closeItemSection.getInt("custom-model-data", 0);
+
+            // Handle both single slot and multiple slots
+            List<Integer> slots = new ArrayList<>();
+            if (closeItemSection.isList("slot")) {
+                slots = closeItemSection.getIntegerList("slot");
+            } else {
+                slots.add(closeItemSection.getInt("slot", 49));
+            }
+
+            ItemStack closeItem = createCloseItem(material, name, lore, customModelData);
+
+            // Place close item in all specified slots
+            for (int slot : slots) {
+                if (slot >= 0 && slot < gui.getSize()) {
+                    gui.setItem(slot, closeItem);
+                }
+            }
+
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error adding close item to shop GUI", e);
+        }
+    }
+
+    /**
+     * Create close item with proper formatting
+     */
+    private ItemStack createCloseItem(Material material, String name, List<String> lore, int customModelData) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null) {
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+
+            List<String> coloredLore = new ArrayList<>();
+            for (String line : lore) {
+                coloredLore.add(ChatColor.translateAlternateColorCodes('&', line));
+            }
+            meta.setLore(coloredLore);
+
+            if (customModelData > 0) {
+                meta.setCustomModelData(customModelData);
+            }
+
+            item.setItemMeta(meta);
+        }
+
+        return item;
     }
 
     /**
@@ -354,7 +421,13 @@ public class ShopGui {
         try {
             // Get clicked enchantment
             String enchantmentKey = getEnchantmentBySlot(slot);
-            if (enchantmentKey == null) return;
+            if (enchantmentKey == null) {
+                // Check if it's a close item click
+                if (isCloseItemSlot(slot)) {
+                    handleCloseItemClick(player);
+                }
+                return;
+            }
 
             // Validate tool
             ItemStack heldTool = getCurrentHeldTool(player);
@@ -429,6 +502,53 @@ public class ShopGui {
 
         } catch (Exception e) {
             plugin.getLogger().log(Level.WARNING, "Error handling shop click for " + player.getName(), e);
+        }
+    }
+
+    /**
+     * Check if clicked slot is a close item slot
+     */
+    private boolean isCloseItemSlot(int slot) {
+        try {
+            ConfigurationSection closeItemSection = shopConfig.getConfigurationSection("shop.items.close_item");
+            if (closeItemSection == null) {
+                return false;
+            }
+
+            List<Integer> slots = new ArrayList<>();
+            if (closeItemSection.isList("slot")) {
+                slots = closeItemSection.getIntegerList("slot");
+            } else {
+                slots.add(closeItemSection.getInt("slot", 49));
+            }
+
+            return slots.contains(slot);
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error checking close item slot", e);
+            return false;
+        }
+    }
+
+    /**
+     * Handle close item click
+     */
+    private void handleCloseItemClick(Player player) {
+        try {
+            player.closeInventory();
+            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.0f);
+
+            // Return to upgrade GUI after short delay
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                if (player.isOnline()) {
+                    ItemStack heldTool = getCurrentHeldTool(player);
+                    if (heldTool != null) {
+                        plugin.getGuiManager().openUpgradeGui(player, heldTool);
+                    }
+                }
+            }, 3L);
+
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error handling close item click", e);
         }
     }
 
