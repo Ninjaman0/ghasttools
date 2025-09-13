@@ -1,0 +1,60 @@
+# Rewards Configuration
+
+rewards:
+  xp:
+    materials:
+
+      diamond_ore: 135
+      gold_ore: 90
+      iron_ore: 68
+      coal_ore: 45
+      wheat: 11
+      carrots: 15
+      potatoes: 17
+      beetroots: 20
+      lilac: 34
+      oak_log: 23
+      oak_wood: 23
+      birch_log: 34
+      birch_wood: 34
+      spruce_log: 43
+      spruce_wood: 43
+      red_glazed_terracotta: 338
+      pink_glazed_terracotta: 225
+      purple_glazed_terracotta: 450
+      crying_obsidian: 675
+
+    command: "levels give {player} {amount} "
+
+  essence:
+    materials:
+      diamond_ore: 135
+      gold_ore: 90
+      iron_ore: 68
+      coal_ore: 45
+      beetroots: 23
+      lilac: 34
+      oak_log: 23
+      oak_wood: 23
+      birch_log: 30
+      birch_wood: 30
+      spruce_log: 35
+      spruce_wood: 35
+      red_glazed_terracotta: 450
+      pink_glazed_terracotta: 225
+      purple_glazed_terracotta: 338
+      crying_obsidian: 675
+      wheat: 11
+      potatoes: 19
+      carrots: 15
+
+    command: "essence give {player} {amount}"
+
+# Bonus rewards for special events
+bonus_rewards:
+  rare_block_multiplier: 1.5  # Multiplier for rare blocks
+  enchantment_bonus: 1.3      # Bonus when using enchanted tools
+  streak_bonus:
+    enabled: true
+    max_streak: 100
+    bonus_per_streak: 0.01    # 1% bonus per streak level

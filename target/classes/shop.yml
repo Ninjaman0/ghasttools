@@ -1,0 +1,445 @@
+# GhastTools Enchantment Shop Configuration - UPDATED FOR ESSENCE LEVELS
+
+shop:
+  currency: # Updated to use essence levels instead of placeholders
+    type: "essence_levels" # Type of currency (essence_levels, money, etc.)
+    display_name: "Essence Levels"
+    multiplier: 1 # Global price multiplier - final price = base_price * multiplier
+
+  title: "&f七七七七七七七七행&1"
+  size: 45
+
+  items:
+    preview_item: 4 # the preview item slot .. same preview item as the one in the main class
+
+    enchantment:
+      haste:
+        material: GOLDEN_PICKAXE
+        name: "&6HASTE I"
+        lore:
+          - "&6Gives you haste effect"
+          - "&6to be able to mine faster and faster"
+        slot: 12
+        shown_price: "&6{price} Essence Levels - &eBuy Now!" # Updated display
+        levels_prices: # Updated prices for essence levels
+          axe:
+            1: 100
+            2: 200
+            3: 325
+            4: 500
+            5: 725
+            6: 1000
+          hoe:
+            1: 100
+            2: 200
+            3: 325
+            4: 500
+            5: 725
+            6: 1000
+          pickaxe:
+            1: 100
+            2: 200
+            3: 325
+            4: 500
+            5: 725
+            6: 1000
+        max_per_tier: # sets a limit for which tool tier can the player this enchantment for
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+      explosive:
+        material: TNT
+        name: "&cEXPLOSIVE I"
+        lore:
+          - "&cChance to spawn TNT"
+          - "&cthat destroys surrounding blocks"
+        slot: 15
+        shown_price: "&c{price} Essence Levels - &eDestroy!"
+        levels_prices:
+          axe:
+            1: 300
+            2: 600
+            3: 950
+            4: 1500
+            5: 2100
+            6: 3000
+          hoe:
+            1: 300
+            2: 600
+            3: 950
+            4: 1500
+            5: 2100
+            6: 3000
+          pickaxe:
+            1: 300
+            2: 600
+            3: 950
+            4: 1500
+            5: 2100
+            6: 3000
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+      speed:
+        material: RABBIT_FOOT
+        name: "&bSPEED I"
+        lore:
+          - "&3Gives you speed effect"
+          - "&3when triggered"
+        slot: 11
+        shown_price: "&b{price} Essence Levels - &eSpeed Up!"
+        levels_prices:
+          axe:
+            1: 50
+            2: 100
+            3: 175
+            4: 275
+            5: 400
+            6: 575
+          hoe:
+            1: 50
+            2: 100
+            3: 175
+            4: 275
+            5: 400
+            6: 575
+          pickaxe:
+            1: 50
+            2: 100
+            3: 175
+            4: 275
+            5: 400
+            6: 575
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+      xpboost:
+        material: EXPERIENCE_BOTTLE
+        name: "&2XP BOOST I"
+        lore:
+          - "&2Increases XP rewards"
+          - "&2from breaking blocks"
+        slot: 13
+        shown_price: "&e{price} Essence Levels - &eLevel Up!"
+        levels_prices:
+          axe:
+            1: 125
+            2: 250
+            3: 400
+            4: 625
+            5: 900
+            6: 1300
+          hoe:
+            1: 125
+            2: 250
+            3: 400
+            4: 625
+            5: 900
+            6: 1300
+          pickaxe:
+            1: 125
+            2: 250
+            3: 400
+            4: 625
+            5: 900
+            6: 1300
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+      essenceboost:
+        material: PURPLE_DYE
+        name: "&5ESSENCE BOOST I"
+        lore:
+          - "&5Increases essence rewards"
+          - "&5from breaking blocks"
+        slot: 14
+        shown_price: "&2{price} Essence Levels - &eGet Rich!"
+        levels_prices:
+          axe:
+            1: 150
+            2: 300
+            3: 475
+            4: 750
+            5: 1100
+            6: 1500
+          hoe:
+            1: 150
+            2: 300
+            3: 475
+            4: 750
+            5: 1100
+            6: 1500
+          pickaxe:
+            1: 150
+            2: 300
+            3: 475
+            4: 750
+            5: 1100
+            6: 1500
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+      meteor:
+        material: MAGMA_BLOCK
+        name: "&cMETEOR I"
+        lore:
+          - "&cSummons meteors from the sky"
+          - "&cthat create massive destruction"
+        slot: 20
+        shown_price: "&5{price} Essence Levels - &cMETEOR RAIN!"
+        levels_prices:
+          axe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+          hoe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+          pickaxe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+      airstrike:
+        material: BOOK
+        name: "&6AIRSTRIKE I"
+        lore:
+          - "Calls in airstrikes"
+          - "for area destruction"
+        slot: 21
+        shown_price: "&6{price} Essence Levels - &cBOMBARD!"
+        levels_prices:
+          axe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+          hoe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+          pickaxe:
+            1: 400
+            2: 800
+            3: 1300
+            4: 2000
+            5: 2900
+            6: 4000
+        max_per_tier:
+          axe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          hoe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+          pickaxe:
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+            6: 6
+
+# Rewards Configuration (kept same for compatibility)
+
+rewards:
+  xp:
+    materials:
+
+      diamond_ore: 135
+      gold_ore: 90
+      iron_ore: 68
+      coal_ore: 45
+      wheat: 11
+      carrot: 15
+      potatoes: 17
+      beetroot: 20
+      lilac: 34
+      oak_log: 23
+      oak_wood: 23
+      birch_log: 34
+      birch_wood: 34
+      spruce_log: 43
+      spruce_wood: 43
+      red_glazed_terracotta: 338
+      pink_glazed_terracotta: 225
+      purple_glazed_terracotta: 450
+      crying_obsidian: 675
+
+    command: "levels give {player} {amount} "
+
+  essence:
+    materials:
+      diamond_ore: 135
+      gold_ore: 90
+      iron_ore: 68
+      coal_ore: 45
+      beetroot: 23
+      lilac: 34
+      oak_log: 23
+      oak_wood: 23
+      birch_log: 30
+      birch_wood: 30
+      spruce_log: 35
+      spruce_wood: 35
+      red_glazed_terracotta: 450
+      pink_glazed_terracotta: 225
+      purple_glazed_terracotta: 338
+      crying_obsidian: 675
+      wheat: 11
+      potato: 19
+      carrot: 15
+
+    command: "essence give {player} {amount}"
+
+# Bonus rewards for special events
+bonus_rewards:
+  rare_block_multiplier: 1.5  # Multiplier for rare blocks
+  enchantment_bonus: 1.3      # Bonus when using enchanted tools
+  streak_bonus:
+    enabled: true
+    max_streak: 100
+    bonus_per_streak: 0.01    # 1% bonus per streak level

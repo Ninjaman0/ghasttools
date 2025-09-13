@@ -1,0 +1,113 @@
+# Block Regeneration Configuration
+# Configure which blocks should regenerate after being destroyed by enchantment effects
+
+regeneration:
+  # Global settings
+  settings:
+    enabled: true
+    max_concurrent_regenerations: 10000
+    cleanup_interval_seconds: 30
+    default_delay: 5
+  # Block-specific regeneration settings
+  blocks:
+    # Crops
+    wheat:
+      replace-with: "AIR"                    # Block to place immediately after breaking
+      regenerate-delay: 4                    # Time in seconds before regeneration
+      regenerate-into: "wheat[age=7]"        # Block to regenerate into (supports block states)
+
+    carrots:
+      replace-with: "AIR"
+      regenerate-delay: 4
+      regenerate-into: "carrots[age=7]"
+
+    potatoes:
+      replace-with: "AIR"
+      regenerate-delay: 4
+      regenerate-into: "potatoes[age=7]"
+
+    beetroots:
+      replace-with: "AIR"
+      regenerate-delay: 4
+      regenerate-into: "beetroots[age=3]"
+    lilac:
+      replace-with: "AIR"
+      regenerate-delay: 4
+      regenerate-into: "lilac"
+
+    # Ores - replace with bedrock temporarily
+    coal_ore:
+      replace-with: "BEDROCK"
+      regenerate-delay: 7
+      regenerate-into: "COAL_ORE"
+
+    iron_ore:
+      replace-with: "BEDROCK"
+      regenerate-delay: 7
+      regenerate-into: "IRON_ORE"
+
+    gold_ore:
+      replace-with: "BEDROCK"
+      regenerate-delay: 7
+      regenerate-into: "GOLD_ORE"
+
+    diamond_ore:
+      replace-with: "BEDROCK"
+      regenerate-delay: 10
+      regenerate-into: "DIAMOND_ORE"
+    pink_glazed_terracotta:
+      replace-with: "BEDROCK"
+      regenerate-delay: 10
+      regenerate-into: "PINK_GLAZED_TERRACOTTA"
+    red_glazed_terracotta:
+      replace-with: "BEDROCK"
+      regenerate-delay: 10
+      regenerate-into: "RED_GLAZED_TERRACOTTA"
+    purple_glazed_terracotta:
+      replace-with: "BEDROCK"
+      regenerate-delay: 10
+      regenerate-into: "PURPLE_GLAZED_TERRACOTTA"
+    crying_obsidian:
+      replace-with: "BEDROCK"
+      regenerate-delay: 10
+      regenerate-into: "CRYING_OBSIDIAN"
+
+
+    # Logs - regenerate as full grown
+    oak_log:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "OAK_LOG"
+    oak_wood:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "OAK_WOOD"
+    birch_log:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "BIRCH_LOG"
+    birch_wood:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "BIRCH_WOOD"
+    spruce_log:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "SPRUCE_LOG"
+    spruce_wood:
+      replace-with: "AIR"
+      regenerate-delay: 10
+      regenerate-into: "SPRUCE_WOOD"
+# Performance settings
+performance:
+  # Use async processing for regeneration tasks
+  async_processing: true
+
+  # Batch size for processing regeneration tasks
+  batch_size: 50
+
+  # Enable debug logging for regeneration
+  debug_logging: false
+
+  # Maximum regeneration delay allowed (in seconds)
+  max_regeneration_delay: 1800             # 30 minutes maximum

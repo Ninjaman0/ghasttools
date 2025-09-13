@@ -1,0 +1,67 @@
+# English Messages
+
+messages:
+  type: chat  # chat, actionbar, title
+
+  # General messages
+  no_permission: "&cYou don't have permission to use this command!"
+  unknown_command: "&cUnknown command! Use /ghasttools help for available commands."
+  player_not_found: "&cPlayer '{player}' not found!"
+  not_holding_tool: "&cYou must be holding a GhastTool to use this command!"
+  plugin_reloaded: "&aGhastTools has been reloaded successfully!"
+  
+  # Tool messages
+  tool_given: "&aGave {player} a {tool} (Tier {tier})!"
+  tool_received: "&aYou received a {tool} (Tier {tier})!"
+  tool_upgraded: "&aTool upgraded to Tier {tier}!"
+  tool_upgraded_admin: "&aUpgraded {player}'s tool to Tier {tier}!"
+  no_permission_tool: "&cYou don't have permission to use {tool}!"
+  
+  # Enchantment messages
+  enchantment_applied: "&aApplied {enchantment} Level {level} to {player}'s tool!"
+  enchantment_received: "&aYour tool received {enchantment} Level {level}!"
+  enchantment_removed: "&aRemoved {enchantment} from {player}'s tool!"
+  enchantment_lost: "&cYour tool lost the {enchantment} enchantment!"
+  cooldown_active: "&c{enchantment} is on cooldown for {time}s!"
+
+
+
+  # Right-click command messages
+  right_click_cooldown: "&cPlease wait {seconds}s before using right-click again!"
+  right_click_commands_disabled: "&cRight-click commands are currently disabled!"
+
+  # WorldGuard messages
+  worldguard_deny: "&cThis tool is disabled in this region! &7({reason})"
+
+  # Data management messages
+  data_exported: "&aData exported to {file} successfully!"
+  data_export_failed: "&cFailed to export data!"
+  data_imported: "&aData imported from {file} successfully!"
+  data_import_failed: "&cFailed to import data!"
+  data_cleaned: "&aCleaned {count} old player records (offline for {days}+ days)!"
+
+  # Animation messages
+  meteor_incoming: "&c☄️ &4METEOR INCOMING! &c☄️"
+  airstrike_incoming: "&c💥 &4AIRSTRIKE INCOMING! &c💥"
+  animation_limit_reached: "&eAnimation limit reached, please wait..."
+
+  # Debug messages
+  debug_mode_enabled: "&aDebug mode enabled!"
+  debug_mode_disabled: "&cDebug mode disabled!"
+  test_completed: "&aTest completed successfully!"
+
+  # Error messages
+  config_error: "&cConfiguration error: {error}"
+  database_error: "&cDatabase error occurred, please contact an administrator!"
+  animation_error: "&cAnimation failed to load, using fallback effect."
+
+  # Success messages
+  command_success: "&aCommand executed successfully!"
+  data_saved: "&aData saved successfully!"
+  cache_cleared: "&aCache cleared successfully!"
+
+  # Color test messages
+  color_test_basic: "&aGreen &bBlue &cRed &dPink &eYellow &fWhite"
+  color_test_hex: "&#FF0000Red &#00FF00Green &#0000FFBlue &#FFFF00Yellow"
+  color_test_rgb: "&{255,0,0}RGB Red &{0,255,0}RGB Green &{0,0,255}RGB Blue"
+  color_test_gradient: "&[gradient:FF0000:0000FF]Gradient Text&[/gradient]"

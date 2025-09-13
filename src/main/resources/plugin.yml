@@ -1,0 +1,218 @@
+name: GhastTools
+version: '${project.version}'
+main: com.ghasttools.GhastToolsPlugin
+api-version: '1.21'
+description: Advanced custom tools with enchantments, visual effects, and configurable mechanics
+author: Ninja0_0
+
+loadbefore:
+  - WorldGuard
+
+softdepend:
+  - WorldGuard
+  - PlaceholderAPI
+  - Vault
+  - ProtocolLib
+  - GhastLevels
+  - GhastEssence
+
+commands:
+  ghasttools:
+    description: Main GhastTools command
+    usage: /ghasttools <subcommand>
+    aliases: [ gt, gtools ]
+    permission: ghasttools.admin
+
+  milestone:
+    description: Open milestone progress GUI
+    usage: /<command>
+    aliases: [ ms ]
+    permission: ghasttools.milestone
+    permission-message: You don't have permission to use milestone commands!
+  profile:
+    description: View player milestone profile and statistics
+    usage: /<command> [player]
+    permission: ghasttools.profile
+    permission-message: You don't have permission to use profile commands!
+permissions:
+  ghasttools.*:
+    description: All GhastTools permissions
+    children:
+      ghasttools.admin: true
+      ghasttools.use.*: true
+      ghasttools.enchant.*: true
+      ghasttools.player.*: true
+      ghasttools.bypass.*: true
+
+  ghasttools.admin:
+    description: Access to all admin commands
+    default: op
+    children:
+      ghasttools.command.give: true
+      ghasttools.command.upgrade: true
+      ghasttools.command.enchant: true
+      ghasttools.command.removeenchant: true
+      ghasttools.command.listenchants: true
+      ghasttools.command.exportdata: true
+      ghasttools.command.importdata: true
+      ghasttools.command.cleandata: true
+      ghasttools.command.reload: true
+      ghasttools.command.debug: true
+      ghasttools.command.test: true
+      ghasttools.command.version: true
+
+  ghasttools.use.*:
+    description: Permission to use all tools
+    children:
+      ghasttools.use.pickaxe: true
+      ghasttools.use.axe: true
+      ghasttools.use.hoe: true
+
+  ghasttools.use.pickaxe:
+    description: Permission to use pickaxes
+    default: true
+
+  ghasttools.use.axe:
+    description: Permission to use axes
+    default: true
+
+  ghasttools.use.hoe:
+    description: Permission to use hoes
+    default: true
+  ghasttools.milestone:
+    description: Use milestone commands and GUI
+    default: true
+  ghasttools.enchant.*:
+    description: Permission to use all enchantments
+    children:
+      ghasttools.enchant.haste: true
+      ghasttools.enchant.explosive: true
+      ghasttools.enchant.speed: true
+      ghasttools.enchant.xpboost: true
+      ghasttools.enchant.essenceboost: true
+      ghasttools.enchant.meteor: true
+      ghasttools.enchant.airstrike: true
+
+  ghasttools.enchant.haste:
+    description: Permission to use Haste enchantment
+    default: true
+
+  ghasttools.enchant.explosive:
+    description: Permission to use Explosive enchantment
+    default: true
+
+  ghasttools.enchant.speed:
+    description: Permission to use Speed enchantment
+    default: true
+
+  ghasttools.enchant.xpboost:
+    description: Permission to use XP Boost enchantment
+    default: true
+
+  ghasttools.enchant.essenceboost:
+    description: Permission to use Essence Boost enchantment
+    default: true
+
+  ghasttools.enchant.meteor:
+    description: Permission to use Meteor enchantment
+    default: true
+
+  ghasttools.enchant.airstrike:
+    description: Permission to use Airstrike enchantment
+    default: true
+
+  ghasttools.bypass.*:
+    description: All bypass permissions
+    children:
+      ghasttools.bypass.cooldown: true
+      ghasttools.bypass.worldguard: true
+      ghasttools.bypass.limits: true
+      ghasttools.bypass.levelcheck: true
+
+  ghasttools.bypass.cooldown:
+    description: Bypasses enchantment cooldowns
+    default: op
+  ghasttools.bypass.levelcheck:
+    description: bypass level check in the upgrade Gui
+    default: op
+  ghasttools.bypass.worldguard:
+    description: Bypasses WorldGuard restrictions
+    default: op
+
+  ghasttools.bypass.limits:
+    description: Bypasses animation and packet limits
+    default: op
+
+  ghasttools.player.*:
+    description: All player commands
+    children:
+      ghasttools.player.info: true
+      ghasttools.player.cooldowns: true
+      ghasttools.player.stats: true
+
+  ghasttools.player.info:
+    description: Access to tool info command
+    default: op
+
+  ghasttools.player.cooldowns:
+    description: Access to cooldowns command
+    default: op
+
+  ghasttools.player.stats:
+    description: Access to stats command
+    default: op
+  ghasttools.profile:
+    description: View own profile
+    default: true
+
+  ghasttools.profile.others:
+    description: View other players' profiles
+    default: op
+  # Command-specific permissions
+  ghasttools.command.give:
+    description: Permission to use give command
+    default: op
+
+  ghasttools.command.upgrade:
+    description: Permission to use upgrade command
+    default: op
+
+  ghasttools.command.enchant:
+    description: Permission to use enchant command
+    default: op
+
+  ghasttools.command.removeenchant:
+    description: Permission to use removeenchant command
+    default: op
+
+  ghasttools.command.listenchants:
+    description: Permission to use listenchants command
+    default: op
+
+  ghasttools.command.exportdata:
+    description: Permission to use exportdata command
+    default: op
+
+  ghasttools.command.importdata:
+    description: Permission to use importdata command
+    default: op
+
+  ghasttools.command.cleandata:
+    description: Permission to use cleandata command
+    default: op
+
+  ghasttools.command.reload:
+    description: Permission to use reload command
+    default: op
+
+  ghasttools.command.debug:
+    description: Permission to use debug command
+    default: op
+
+  ghasttools.command.test:
+    description: Permission to use test command
+    default: op
+
+  ghasttools.command.version:
+    description: Permission to use version command
+    default: op

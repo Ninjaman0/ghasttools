@@ -1,0 +1,446 @@
+# GhastTools Milestone Configuration
+# This file configures the milestone system including GUI layouts, materials, and rewards
+
+# Main milestone GUI configuration
+main-gui-size: 54  # Must be multiple of 9 (9, 18, 27, 36, 45, 54)
+
+# Profile GUI configuration
+profile-gui:
+  size: 54  # GUI size (9, 18, 27, 36, 45, 54)
+
+  # Player head configuration
+  player-head:
+    slot: 4  # Slot position for player head
+    lore:
+      - "&7Balance: $%eco_balance%"
+      - "&7Playtime: %statistic_play_one_minute%"
+      - "&7Join Date: %player_first_played%"
+
+  # Category slot positions
+  farming-category-slot: 20
+  mining-category-slot: 22
+  foraging-category-slot: 24
+
+  # Misc info item configuration
+  misc-info:
+    material: REDSTONE_BLOCK
+    item-name: "&5&lOther Stats"
+    item-lore:
+      - "&7Current Money: &e$%eco_balance%"
+      - "&7Current Level: &e%glevels_level%"
+      - "&7Total Playtime: &e%statistic_play_one_minute%"
+      - "&7Deaths: &c%statistic_deaths%"
+      - "&7Mob Kills: &a%statistic_mob_kills%"
+      - ""
+      - "&7Last Login: &e%player_last_played%"
+    slot: 40
+
+# ADDED: Custom item names for profile GUI categories
+profile-item-names:
+  farming:
+    WHEAT: "&6&lGOLDEN &3&lWheat"
+    CARROTS: "&6Blessed &4Carrots"
+    POTATOES: "&e&lRoyal &6Potatoes"
+    BEETROOTS: "&d&lMagical &5Beetroots"
+    SWEET_BERRY_BUSH: "&c&lSweet &4Berries"
+  mining:
+    COAL_ORE: "&8&lDark &0Coal"
+    IRON_ORE: "&7&lSilver &fIron"
+    GOLD_ORE: "&6&lShining &eGold"
+    DIAMOND_ORE: "&b&lBrilliant &3Diamonds"
+    EMERALD_ORE: "&a&lPrecious &2Emeralds"
+    LAPIS_ORE: "&9&lMystic &1Lapis"
+    REDSTONE_ORE: "&c&lElectric &4Redstone"
+    COPPER_ORE: "&6&lAncient &eCopper"
+  foraging:
+    OAK_LOG: "&6&lMajestic &eOak"
+    BIRCH_LOG: "&f&lPure &7Birch"
+    SPRUCE_LOG: "&2&lEvergreen &aSpruce"
+    JUNGLE_LOG: "&2&lWild &aJungle"
+    ACACIA_LOG: "&6&lSavanna &eAcacia"
+    DARK_OAK_LOG: "&8&lShadow &0Dark Oak"
+    MANGROVE_LOG: "&2&lSwamp &6Mangrove"
+    CHERRY_LOG: "&d&lBlossom &5Cherry"
+
+# ENHANCED: Linked materials configuration - materials that share the same milestone progress
+linked-materials:
+  oak:
+    - OAK_LOG
+    - OAK_WOOD
+  birch:
+    - BIRCH_LOG
+    - BIRCH_WOOD
+  spruce:
+    - SPRUCE_LOG
+    - SPRUCE_WOOD
+  jungle:
+    - JUNGLE_LOG
+    - JUNGLE_WOOD
+  acacia:
+    - ACACIA_LOG
+    - ACACIA_WOOD
+  dark_oak:
+    - DARK_OAK_LOG
+    - DARK_OAK_WOOD
+  mangrove:
+    - MANGROVE_LOG
+    - MANGROVE_WOOD
+  cherry:
+    - CHERRY_LOG
+    - CHERRY_WOOD
+  coal:
+    - COAL_ORE
+    - DEEPSLATE_COAL_ORE
+  iron:
+    - IRON_ORE
+    - DEEPSLATE_IRON_ORE
+  gold:
+    - GOLD_ORE
+    - DEEPSLATE_GOLD_ORE
+  diamond:
+    - DIAMOND_ORE
+    - DEEPSLATE_DIAMOND_ORE
+  emerald:
+    - EMERALD_ORE
+    - DEEPSLATE_EMERALD_ORE
+  lapis:
+    - LAPIS_ORE
+    - DEEPSLATE_LAPIS_ORE
+  redstone:
+    - REDSTONE_ORE
+    - DEEPSLATE_REDSTONE_ORE
+  copper:
+    - COPPER_ORE
+    - DEEPSLATE_COPPER_ORE
+
+# Materials to track for milestones
+milestone-blocks:
+  - WHEAT
+  - CARROTS
+  - POTATOES
+  - BEETROOTS
+  - SWEET_BERRY_BUSH
+  - COAL_ORE
+  - DEEPSLATE_COAL_ORE
+  - IRON_ORE
+  - DEEPSLATE_IRON_ORE
+  - GOLD_ORE
+  - DEEPSLATE_GOLD_ORE
+  - DIAMOND_ORE
+  - DEEPSLATE_DIAMOND_ORE
+  - EMERALD_ORE
+  - DEEPSLATE_EMERALD_ORE
+  - LAPIS_ORE
+  - DEEPSLATE_LAPIS_ORE
+  - REDSTONE_ORE
+  - DEEPSLATE_REDSTONE_ORE
+  - COPPER_ORE
+  - DEEPSLATE_COPPER_ORE
+  - OAK_LOG
+  - OAK_WOOD
+  - BIRCH_LOG
+  - BIRCH_WOOD
+  - SPRUCE_LOG
+  - SPRUCE_WOOD
+  - JUNGLE_LOG
+  - JUNGLE_WOOD
+  - ACACIA_LOG
+  - ACACIA_WOOD
+  - DARK_OAK_LOG
+  - DARK_OAK_WOOD
+  - MANGROVE_LOG
+  - MANGROVE_WOOD
+  - CHERRY_LOG
+  - CHERRY_WOOD
+
+# Profile categories for organizing materials
+profile:
+  farming:
+    - WHEAT
+    - CARROTS
+    - POTATOES
+    - BEETROOTS
+    - SWEET_BERRY_BUSH
+  mining:
+    - COAL_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - DIAMOND_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - REDSTONE_ORE
+    - COPPER_ORE
+  foraging:
+    - OAK_LOG
+    - BIRCH_LOG
+    - SPRUCE_LOG
+    - JUNGLE_LOG
+    - ACACIA_LOG
+    - DARK_OAK_LOG
+    - MANGROVE_LOG
+    - CHERRY_LOG
+
+# Milestone configurations
+milestones:
+  WHEAT:
+    gui-material: WHEAT
+    gui-name: "&6&lWheat &4&lMILESTONES"
+    slot: 10  # Slot in main milestone GUI
+    gui_lore:
+      - "&7Track your wheat farming progress"
+      - "&7and claim amazing rewards!"
+      - ""
+      - "&eClick to view milestones!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has broken 100 wheat!"
+        gui-command: "give %player_name% wheat 64"
+        gui_name: "&aMILESTONE 1 &7- &eWheat Farmer"
+        slot: 10  # Slot in sub milestone GUI
+        gui_lore:
+          - "&7Break &e100 wheat &7blocks"
+          - "&7Reward: &664 Wheat"
+          - ""
+          - "&7Progress: &e%ghasttools_wheat_milestone%&7/&e100"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+      2:
+        amount: 500
+        on-reach-command: "say %player_name% has broken 500 wheat!"
+        gui-command: "give %player_name% wheat 128"
+        gui_name: "&aMILESTONE 2 &7- &eWheat Expert"
+        slot: 11
+        gui_lore:
+          - "&7Break &e500 wheat &7blocks"
+          - "&7Reward: &6128 Wheat"
+          - ""
+          - "&7Progress: &e%ghasttools_wheat_milestone%&7/&e500"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+      3:
+        amount: 1000
+        on-reach-command: "say %player_name% has broken 1000 wheat!"
+        gui-command: "give %player_name% diamond 5"
+        gui_name: "&aMILESTONE 3 &7- &eWheat Master"
+        slot: 12
+        gui_lore:
+          - "&7Break &e1000 wheat &7blocks"
+          - "&7Reward: &b5 Diamonds"
+          - ""
+          - "&7Progress: &e%ghasttools_wheat_milestone%&7/&e1000"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  CARROTS:
+    gui-material: CARROT
+    gui-name: "&6&lCarrot &4&lMILESTONES"
+    slot: 11
+    gui_lore:
+      - "&7Track your carrot farming progress"
+      - "&7and claim amazing rewards!"
+      - ""
+      - "&eClick to view milestones!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has broken 100 carrots!"
+        gui-command: "give %player_name% carrot 64"
+        gui_name: "&aMILESTONE 1 &7- &eCarrot Farmer"
+        slot: 10
+        gui_lore:
+          - "&7Break &e100 carrot &7blocks"
+          - "&7Reward: &664 Carrots"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+      2:
+        amount: 500
+        on-reach-command: "say %player_name% has broken 500 carrots!"
+        gui-command: "give %player_name% carrot 128"
+        gui_name: "&aMILESTONE 2 &7- &eCarrot Expert"
+        slot: 11
+        gui_lore:
+          - "&7Break &e500 carrot &7blocks"
+          - "&7Reward: &6128 Carrots"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  POTATOES:
+    gui-material: POTATO
+    gui-name: "&6&lPotato &4&lMILESTONES"
+    slot: 12
+    gui_lore:
+      - "&7Track your potato farming progress"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has broken 100 potatoes!"
+        gui-command: "give %player_name% potato 64"
+        gui_name: "&aMILESTONE 1 &7- &ePotato Farmer"
+        slot: 10
+        gui_lore:
+          - "&7Break &e100 potato &7blocks"
+          - "&7Reward: &664 Potatoes"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  # ENHANCED: Coal milestone now tracks both regular and deepslate ores (linked materials)
+  COAL_ORE:
+    gui-material: COAL_ORE
+    gui-name: "&8&lCoal &4&lMILESTONES"
+    slot: 19
+    gui_lore:
+      - "&7Track your coal mining progress"
+      - "&7Includes both coal ore and deepslate coal ore!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has mined 100 coal ore!"
+        gui-command: "give %player_name% coal 64"
+        gui_name: "&aMILESTONE 1 &7- &8Coal Miner"
+        slot: 10
+        gui_lore:
+          - "&7Mine &e100 coal ore &7blocks"
+          - "&7(includes deepslate coal ore)"
+          - "&7Reward: &864 Coal"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+      2:
+        amount: 500
+        on-reach-command: "say %player_name% has mined 500 coal ore!"
+        gui-command: "give %player_name% coal 128"
+        gui_name: "&aMILESTONE 2 &7- &8Coal Expert"
+        slot: 11
+        gui_lore:
+          - "&7Mine &e500 coal ore &7blocks"
+          - "&7(includes deepslate coal ore)"
+          - "&7Reward: &8128 Coal"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  # ENHANCED: Iron milestone now tracks both regular and deepslate ores
+  IRON_ORE:
+    gui-material: IRON_ORE
+    gui-name: "&7&lIron &4&lMILESTONES"
+    slot: 20
+    gui_lore:
+      - "&7Track your iron mining progress"
+      - "&7Includes both iron ore and deepslate iron ore!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has mined 100 iron ore!"
+        gui-command: "give %player_name% iron_ingot 32"
+        gui_name: "&aMILESTONE 1 &7- &7Iron Miner"
+        slot: 10
+        gui_lore:
+          - "&7Mine &e100 iron ore &7blocks"
+          - "&7(includes deepslate iron ore)"
+          - "&7Reward: &732 Iron Ingots"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  # ENHANCED: Diamond milestone now tracks both regular and deepslate ores
+  DIAMOND_ORE:
+    gui-material: DIAMOND_ORE
+    gui-name: "&b&lDiamond &4&lMILESTONES"
+    slot: 21
+    gui_lore:
+      - "&7Track your diamond mining progress"
+      - "&7Includes both diamond ore and deepslate diamond ore!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 50
+        on-reach-command: "say %player_name% has mined 50 diamond ore!"
+        gui-command: "give %player_name% diamond 10"
+        gui_name: "&aMILESTONE 1 &7- &bDiamond Miner"
+        slot: 10
+        gui_lore:
+          - "&7Mine &e50 diamond ore &7blocks"
+          - "&7(includes deepslate diamond ore)"
+          - "&7Reward: &b10 Diamonds"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+      2:
+        amount: 100
+        on-reach-command: "say %player_name% has mined 100 diamond ore!"
+        gui-command: "give %player_name% diamond 25"
+        gui_name: "&aMILESTONE 2 &7- &bDiamond Expert"
+        slot: 11
+        gui_lore:
+          - "&7Mine &e100 diamond ore &7blocks"
+          - "&7(includes deepslate diamond ore)"
+          - "&7Reward: &b25 Diamonds"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  # ENHANCED: Oak milestone now tracks both logs and wood (linked materials)
+  OAK_LOG:
+    gui-material: OAK_LOG
+    gui-name: "&6&lOak &4&lMILESTONES"
+    slot: 28
+    gui_lore:
+      - "&7Track your oak foraging progress"
+      - "&7Includes both oak logs and oak wood!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has chopped 100 oak!"
+        gui-command: "give %player_name% oak_log 64"
+        gui_name: "&aMILESTONE 1 &7- &6Oak Forager"
+        slot: 10
+        gui_lore:
+          - "&7Chop &e100 oak &7blocks"
+          - "&7(includes oak logs and wood)"
+          - "&7Reward: &664 Oak Logs"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  BIRCH_LOG:
+    gui-material: BIRCH_LOG
+    gui-name: "&f&lBirch &4&lMILESTONES"
+    slot: 29
+    gui_lore:
+      - "&7Track your birch foraging progress"
+      - "&7Includes both birch logs and birch wood!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has chopped 100 birch!"
+        gui-command: "give %player_name% birch_log 64"
+        gui_name: "&aMILESTONE 1 &7- &fBirch Forager"
+        slot: 10
+        gui_lore:
+          - "&7Chop &e100 birch &7blocks"
+          - "&7(includes birch logs and wood)"
+          - "&7Reward: &f64 Birch Logs"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE
+
+  SPRUCE_LOG:
+    gui-material: SPRUCE_LOG
+    gui-name: "&2&lSpruce &4&lMILESTONES"
+    slot: 30
+    gui_lore:
+      - "&7Track your spruce foraging progress"
+      - "&7Includes both spruce logs and spruce wood!"
+      - "&7and claim amazing rewards!"
+    sub-milestones:
+      1:
+        amount: 100
+        on-reach-command: "say %player_name% has chopped 100 spruce!"
+        gui-command: "give %player_name% spruce_log 64"
+        gui_name: "&aMILESTONE 1 &7- &2Spruce Forager"
+        slot: 10
+        gui_lore:
+          - "&7Chop &e100 spruce &7blocks"
+          - "&7(includes spruce logs and wood)"
+          - "&7Reward: &264 Spruce Logs"
+        gui_item_ready: LIME_STAINED_GLASS_PANE
+        gui_item_not_ready: RED_STAINED_GLASS_PANE

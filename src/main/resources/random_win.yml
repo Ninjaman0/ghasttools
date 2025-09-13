@@ -1,0 +1,538 @@
+currency:
+  type: "essence_levels"
+  display_name: "&5Essence"
+  price: 50
+
+animation:
+  speed: 10
+  type: csgo
+  can_escape: true
+  winning_slot: 13
+  pause: 40
+  total_time: 5
+
+gui:
+  title: "&0Opening Random Enchantment"
+  size: 27
+  winning_slot: 13
+  items_slots:
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+  filler:
+    enabled: true
+    slots: []
+    material: BLACK_STAINED_GLASS_PANE
+    name: " "
+
+items:
+  speed_1:
+    name: "Speed I"
+    lore:
+      - "&7Chance of 10%"
+    material: RABBIT_FOOT
+    chance: 10
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: speed
+    level: 1
+  speed_2:
+    name: "Speed II"
+    lore:
+      - "&7Chance of 8%"
+    material: RABBIT_FOOT
+    chance: 8
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: speed
+    level: 2
+  speed_3:
+    name: "Speed III"
+    lore:
+      - "&7Chance of 7%"
+    material: RABBIT_FOOT
+    chance: 7
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: speed
+    level: 3
+  speed_4:
+    name: "Speed IV"
+    lore:
+      - "&7Chance of 6%"
+    material: RABBIT_FOOT
+    chance: 6
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: speed
+    level: 4
+  speed_5:
+    name: "Speed V"
+    lore:
+      - "&7Chance of 5%"
+    material: RABBIT_FOOT
+    chance: 5
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: speed
+    level: 5
+  speed_6:
+    name: "Speed VI"
+    lore:
+      - "&7Chance of 4%"
+    material: RABBIT_FOOT
+    chance: 4
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: speed
+    level: 6
+  haste_1:
+    name: "Haste I"
+    lore:
+      - "&7Chance of 4%"
+    material: GOLDEN_PICKAXE
+    chance: 4
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: haste
+    level: 1
+  haste_2:
+    name: "Haste II"
+    lore:
+      - "&7Chance of 3.5%"
+    material: GOLDEN_PICKAXE
+    chance: 3.5
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: haste
+    level: 2
+  haste_3:
+    name: "Haste III"
+    lore:
+      - "&7Chance of 3%"
+    material: GOLDEN_PICKAXE
+    chance: 3
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: haste
+    level: 3
+  haste_4:
+    name: "Haste IV"
+    lore:
+      - "&7Chance of 2.5%"
+    material: GOLDEN_PICKAXE
+    chance: 2.5
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: haste
+    level: 4
+  haste_5:
+    name: "Haste V"
+    lore:
+      - "&7Chance of 2%"
+    material: GOLDEN_PICKAXE
+    chance: 2
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: haste
+    level: 5
+  haste_6:
+    name: "Haste VI"
+    lore:
+      - "&7Chance of 1%"
+    material: GOLDEN_PICKAXE
+    chance: 1
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: haste
+    level: 6
+  xpboost_1:
+    name: "XP Boost I"
+    lore:
+      - "&7Chance of 4%"
+    material: EXPERIENCE_BOTTLE
+    chance: 4
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: xpboost
+    level: 1
+  xpboost_2:
+    name: "XP Boost II"
+    lore:
+      - "&7Chance of 3.5%"
+    material: EXPERIENCE_BOTTLE
+    chance: 3.5
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: xpboost
+    level: 2
+  xpboost_3:
+    name: "XP Boost III"
+    lore:
+      - "&7Chance of 3%"
+    material: EXPERIENCE_BOTTLE
+    chance: 3
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: xpboost
+    level: 3
+  xpboost_4:
+    name: "XP Boost IV"
+    lore:
+      - "&7Chance of 2.5%"
+    material: EXPERIENCE_BOTTLE
+    chance: 2.5
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: xpboost
+    level: 4
+  xpboost_5:
+    name: "XP Boost V"
+    lore:
+      - "&7Chance of 2%"
+    material: EXPERIENCE_BOTTLE
+    chance: 2
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: xpboost
+    level: 5
+  xpboost_6:
+    name: "XP Boost VI"
+    lore:
+      - "&7Chance of 1%"
+    material: EXPERIENCE_BOTTLE
+    chance: 1
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: xpboost
+    level: 6
+  essenceboost_1:
+    name: "Essence Boost I"
+    lore:
+      - "&7Chance of 4%"
+    material: PURPLE_DYE
+    chance: 4
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: essenceboost
+    level: 1
+  essenceboost_2:
+    name: "Essence Boost II"
+    lore:
+      - "&7Chance of 3.5%"
+    material: PURPLE_DYE
+    chance: 3.5
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: essenceboost
+    level: 2
+  essenceboost_3:
+    name: "Essence Boost III"
+    lore:
+      - "&7Chance of 3%"
+    material: PURPLE_DYE
+    chance: 3
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: essenceboost
+    level: 3
+  essenceboost_4:
+    name: "Essence Boost IV"
+    lore:
+      - "&7Chance of 2.5%"
+    material: PURPLE_DYE
+    chance: 2.5
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: essenceboost
+    level: 4
+  essenceboost_5:
+    name: "Essence Boost V"
+    lore:
+      - "&7Chance of 2%"
+    material: PURPLE_DYE
+    chance: 2
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: essenceboost
+    level: 5
+  essenceboost_6:
+    name: "Essence Boost VI"
+    lore:
+      - "&7Chance of 1%"
+    material: PURPLE_DYE
+    chance: 1
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: essenceboost
+    level: 6
+  explosive_1:
+    name: "Explosive I"
+    lore:
+      - "&7Chance of 3.5%"
+    material: TNT
+    chance: 3.5
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: explosive
+    level: 1
+  explosive_2:
+    name: "Explosive II"
+    lore:
+      - "&7Chance of 3%"
+    material: TNT
+    chance: 3
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: explosive
+    level: 2
+  explosive_3:
+    name: "Explosive III"
+    lore:
+      - "&7Chance of 2.5%"
+    material: TNT
+    chance: 2.5
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: explosive
+    level: 3
+  explosive_4:
+    name: "Explosive IV"
+    lore:
+      - "&7Chance of 2%"
+    material: TNT
+    chance: 2
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: explosive
+    level: 4
+  explosive_5:
+    name: "Explosive V"
+    lore:
+      - "&7Chance of 1.5%"
+    material: TNT
+    chance: 1.5
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: explosive
+    level: 5
+  explosive_6:
+    name: "Explosive VI"
+    lore:
+      - "&7Chance of 1%"
+    material: TNT
+    chance: 1
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: explosive
+    level: 6
+  meteor_1:
+    name: "Meteor I"
+    lore:
+      - "&7Chance of 3.5%"
+    material: MAGMA_BLOCK
+    chance: 3.5
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: meteor
+    level: 1
+  meteor_2:
+    name: "Meteor II"
+    lore:
+      - "&7Chance of 3%"
+    material: MAGMA_BLOCK
+    chance: 3
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: meteor
+    level: 2
+  meteor_3:
+    name: "Meteor III"
+    lore:
+      - "&7Chance of 2.5%"
+    material: MAGMA_BLOCK
+    chance: 2.5
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: meteor
+    level: 3
+  meteor_4:
+    name: "Meteor IV"
+    lore:
+      - "&7Chance of 2%"
+    material: MAGMA_BLOCK
+    chance: 2
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: meteor
+    level: 4
+  meteor_5:
+    name: "Meteor V"
+    lore:
+      - "&7Chance of 1.5%"
+    material: MAGMA_BLOCK
+    chance: 1.5
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: meteor
+    level: 5
+  meteor_6:
+    name: "Meteor VI"
+    lore:
+      - "&7Chance of 1%"
+    material: MAGMA_BLOCK
+    chance: 1
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: meteor
+    level: 6
+  airstrike_1:
+    name: "Airstrike I"
+    lore:
+      - "&7Chance of 2%"
+    material: BOOK
+    chance: 2
+    can_apply:
+      - "axe:1-6"
+      - "hoe:1-6"
+      - "pickaxe:1-6"
+    enchantment: airstrike
+    level: 1
+  airstrike_2:
+    name: "Airstrike II"
+    lore:
+      - "&7Chance of 1.5%"
+    material: BOOK
+    chance: 1.5
+    can_apply:
+      - "axe:2-6"
+      - "hoe:2-6"
+      - "pickaxe:2-6"
+    enchantment: airstrike
+    level: 2
+  airstrike_3:
+    name: "Airstrike III"
+    lore:
+      - "&7Chance of 1%"
+    material: BOOK
+    chance: 1
+    can_apply:
+      - "axe:3-6"
+      - "hoe:3-6"
+      - "pickaxe:3-6"
+    enchantment: airstrike
+    level: 3
+  airstrike_4:
+    name: "Airstrike IV"
+    lore:
+      - "&7Chance of 0.75%"
+    material: BOOK
+    chance: 0.75
+    can_apply:
+      - "axe:4-6"
+      - "hoe:4-6"
+      - "pickaxe:4-6"
+    enchantment: airstrike
+    level: 4
+  airstrike_5:
+    name: "Airstrike V"
+    lore:
+      - "&7Chance of 0.5%"
+    material: BOOK
+    chance: 0.5
+    can_apply:
+      - "axe:5-6"
+      - "hoe:5-6"
+      - "pickaxe:5-6"
+    enchantment: airstrike
+    level: 5
+  airstrike_6:
+    name: "Airstrike VI"
+    lore:
+      - "&7Chance of 0.25%"
+    material: BOOK
+    chance: 0.25
+    can_apply:
+      - "axe:6-6"
+      - "hoe:6-6"
+      - "pickaxe:6-6"
+    enchantment: airstrike
+    level: 6

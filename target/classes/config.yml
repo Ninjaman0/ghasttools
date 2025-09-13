@@ -1,0 +1,473 @@
+# GhastTools Main Configuration
+
+# Storage configuration
+storage:
+  type: sqlite  # sqlite or yaml
+  cleanup_days: 30  # Set to "none" to disable automatic cleanup
+  connection_pool_size: 10
+  timeout_seconds: 30
+
+# Message configuration
+messages:
+  type: chat  # chat, actionbar, or title
+  cache_size: 1000
+  cache_ttl_seconds: 300
+
+# World restrictions
+worlds:
+  whitelist: []  # If not empty, only these worlds are allowed
+  blacklist: []  # These worlds are blocked
+
+# WorldGuard integration
+worldguard:
+  default_behavior: allow  # allow or deny
+  notify_on_deny: true
+  deny_message: "&cThis tool is disabled in this region!"
+  check_build_permissions: true
+
+# Right-click tool commands - disables dont try to enable it
+right_click_commands:
+  enabled: false
+  cooldown: 1  # seconds
+  commands:
+    pickaxe:
+      - "effect give {player} minecraft:haste 10 1"
+      - "playsound minecraft:block.anvil.use player {player}"
+    axe:
+      - "effect give {player} minecraft:strength 10 1"
+      - "playsound minecraft:item.axe.strip player {player}"
+    hoe:
+      - "effect give {player} minecraft:speed 10 1"
+      - "playsound minecraft:item.hoe.till player {player}"
+
+# ENHANCED: Explosion configuration with block whitelist and explosion rewards
+explosion:
+  max_blocks: 500
+  async_breaking: true
+  packet_limit_per_second: 30
+  animation_limit_per_player: 3
+
+  # ENHANCED: Block whitelist - only these blocks can be broken by explosions
+  block_whitelist:
+    enabled: true
+    # Set to true to enable whitelist mode
+    blocks:
+      - DIAMOND_ORE
+      - GOLD_ORE
+      - IRON_ORE
+      - COAL_ORE
+      - CARROTS
+      - POTATOES
+      - BEETROOTS
+      - LILAC
+      - OAK_LOG
+      - OAK_WOOD
+      - BIRCH_LOG
+      - BIRCH_WOOD
+      - SPRUCE_LOG
+      - SPRUCE_WOOD
+      - RED_GLAZED_TERRACOTTA
+      - PINK_GLAZED_TERRACOTTA
+      - PURPLE_GLAZED_TERRACOTTA
+      - CRYING_OBSIDIAN
+      - diamond_ore
+      - gold_ore
+      - iron_ore
+      - coal_ore
+      - carrots
+      - potatoes
+      - beetroots
+      - lilac
+      - oak_log
+      - oak_wood
+      - birch_log
+      - birch_wood
+      - spruce_log
+      - spruce_wood
+      - red_glazed_terracotta
+      - pink_glazed_terracotta
+      - purple_glazed_terracotta
+      - crying_obsidian
+      - wheat
+      - WHEAT
+
+
+  # Blacklisted blocks (always protected)
+  blacklisted_blocks:
+    - bedrock
+    - obsidian
+    - barrier
+    - end_portal_frame
+    - spawner
+    - end_portal
+    - nether_portal
+    - command_block
+    - structure_block
+    - jigsaw
+    - light
+
+  # Environmental effects - CLEANED UP (no lightning/fire)
+  environmental_effects:
+    craters:
+      enabled: true
+      max_depth: 3
+      max_radius: 10
+    # Removed fire and lightning effects for clean explosions
+# ENHANCED: Explosion block rewards - what players get when blocks are exploded
+explosion-blocks:
+  wheat:
+    item-name: "&x&D&4&A&F&3&7&lɢᴏ&x&D&9&B&4&3&D&lʟᴅ&x&D&E&B&9&4&3&lᴇɴ&x&E&2&B&E&4&9&l ᴡ&x&E&7&C&3&4&F&lʜᴇ&x&E&C&C&8&5&5&lᴀᴛ"
+    material: WHEAT
+    lore:
+      - '&7A mystical wheat harvested from the tycoon fields.'
+      - ' '
+      - '&7 sell it for &2$5&7!'
+    custom-model-data: 99988
+
+  carrots:
+    item-name: "&x&D&4&8&A&3&7&lʙʟ&x&D&8&8&C&3&C&lᴇs&x&D&C&8&F&4&1&lsᴇ&x&E&0&9&1&4&6&lᴅ &x&E&4&9&3&4&B&lᴄᴀ&x&E&8&9&6&5&0&lʀʀ&x&E&C&9&8&5&5&lᴏᴛ"
+    material: CARROT
+    lore:
+      - '&7A divine carrot glowing with magical energy.'
+      - ' '
+      - '&7 sell it for &2$8&7!'
+    custom-model-data: 99988
+
+  potatoes:
+    item-name: "&x&9&9&6&D&2&8&lᴄᴜ&x&9&3&6&A&2&9&lʀs&x&8&C&6&8&2&9&lᴇᴅ&x&8&6&6&5&2&A&l ᴘ&x&8&0&6&2&2&B&lᴏᴛ&x&7&9&6&0&2&B&lᴀᴛ&x&7&9&6&0&2&B&lᴏ"
+    material: POTATO
+    lore:
+      - '&7A potato infused with dark magic. Handle with care.'
+      - ' '
+      - '&7 sell it for &2$12&7!'
+    custom-model-data: 99988
+
+  beetroots:
+    item-name: "&x&A&0&1&F&2&9&lᴄʀ&x&A&3&1&E&2&B&lɪᴍ&x&A&6&1&E&2&E&lsᴏ&x&A&9&1&D&3&0&lɴ &x&A&C&1&C&3&2&lʙᴇ&x&A&F&1&B&3&4&lᴇᴛ&x&B&2&1&B&3&7&lʀᴏ&x&B&5&1&A&3&9&lᴏᴛ"
+    material: BEETROOT
+    lore:
+      - '&7A beetroot drenched in the essence of blood.'
+      - ' '
+      - '&7 sell it for &2$15&7!'
+    custom-model-data: 99988
+
+  lilac:
+    item-name: "&x&D&B&8&5&B&9&lᴇᴛᴇ&x&D&F&8&7&B&A&lʀɴᴀ&x&E&2&8&9&B&B&lʟ ʟ&x&E&6&8&B&B&D&lɪʟᴀ&x&E&A&8&D&B&E&lᴄ ʙ&x&E&D&8&F&B&F&lʟᴏs&x&F&1&9&1&C&0&lsᴏᴍ"
+    material: LILAC
+    lore:
+      - '&7A flower that never withers.'
+      - ' '
+      - '&7 sell it for &2$50&7!'
+    custom-model-data: 99988
+
+
+  oak_log:
+    item-name: "&x&7&5&4&4&2&8&lᴀɴᴄ&x&7&9&4&8&2&B&lɪᴇɴ&x&7&E&4&B&2&F&lᴛ ᴏ&x&8&2&4&F&3&2&lᴀᴋ &x&8&6&5&2&3&5&lʟᴏɢ"
+    material: OAK_LOG
+    lore:
+      - '&7A log from a tree that has stood for centuries.'
+      - ' '
+      - '&7 sell it for &2$100&7!'
+    custom-model-data: 99988
+  oak_wood:
+    item-name: "&x&7&5&4&4&2&8&lᴀɴᴄ&x&7&9&4&8&2&B&lɪᴇɴ&x&7&E&4&B&2&F&lᴛ ᴏ&x&8&2&4&F&3&2&lᴀᴋ &x&8&6&5&2&3&5&lʟᴏɢ"
+    material: OAK_LOG
+    lore:
+      - '&7A log from a tree that has stood for centuries.'
+      - ' '
+      - '&7 sell it for &2$100&7!'
+    custom-model-data: 99988
+  birch_log:
+    item-name: "&x&B&F&B&6&B&1&lᴍᴏᴏ&x&C&B&C&0&B&A&lɴʟɪ&x&D&7&C&A&C&4&lᴛ ʙ&x&E&2&D&5&C&D&lɪʀᴄ&x&E&E&D&F&D&7&lʜ ʟ&x&E&E&D&F&D&7&lᴏɢ"
+    material: BIRCH_LOG
+    lore:
+      - '&7A log that glows faintly under the moonlight.'
+      - ' '
+      - '&7 sell it for &2$150&7!'
+    custom-model-data: 99988
+  birch_wood:
+    item-name: "&x&B&F&B&6&B&1&lᴍᴏᴏ&x&C&B&C&0&B&A&lɴʟɪ&x&D&7&C&A&C&4&lᴛ ʙ&x&E&2&D&5&C&D&lɪʀᴄ&x&E&E&D&F&D&7&lʜ ʟ&x&E&E&D&F&D&7&lᴏɢ"
+    material: BIRCH_LOG
+    lore:
+      - '&7A log that glows faintly under the moonlight.'
+      - ' '
+      - '&7 sell it for &2$150&7!'
+    custom-model-data: 99988
+  spruce_log:
+    item-name: "&x&8&4&C&3&C&B&lғʀᴏ&x&6&A&A&3&A&B&lᴢᴇɴ&x&6&7&4&9&2&1&l sᴘ&x&6&7&4&9&2&1&lʀᴜᴄ&x&6&7&4&9&2&1&lᴇ ʟ&x&6&7&4&9&2&1&lᴏɢ"
+    material: SPRUCE_LOG
+    lore:
+      - '&7A log preserved in eternal ice.'
+      - ' '
+      - '&7 sell it for &2$200&7!'
+    custom-model-data: 99988
+  spruce_wood:
+    item-name: "&x&8&4&C&3&C&B&lғʀᴏ&x&6&A&A&3&A&B&lᴢᴇɴ&x&6&7&4&9&2&1&l sᴘ&x&6&7&4&9&2&1&lʀᴜᴄ&x&6&7&4&9&2&1&lᴇ ʟ&x&6&7&4&9&2&1&lᴏɢ"
+    material: SPRUCE_LOG
+    lore:
+      - '&7A log preserved in eternal ice.'
+      - ' '
+      - '&7 sell it for &2$200&7!'
+    custom-model-data: 99988
+
+  coal_ore:
+    item-name: "&x&3&7&3&7&3&7&lᴄ&x&3&7&3&7&3&7&lᴏ&x&3&7&3&7&3&7&lᴀ&x&3&7&3&7&3&7&lʟ"
+    material: COAL
+    lore:
+      - '&7Just a piece of coal, but it has a story to tell.'
+      - '&7    You need to listen closely to hear it.'
+      - ' '
+      - '&7 sell it for &2$150&7!'
+    custom-model-data: 99988
+
+  iron_ore:
+    item-name: "&x&F&5&F&3&F&3&lɪ&x&E&4&E&3&E&3&lʀ&x&D&4&D&3&D&3&lᴏ&x&C&3&C&3&C&3&lɴ"
+    material: IRON_INGOT
+    lore:
+      - '&7just piece of iron.'
+      - ' '
+      - '&7 sell it for &2$200&7!'
+    custom-model-data: 99988
+
+  gold_ore:
+    item-name: "&x&E&C&B&6&2&4&lɢ&x&E&B&B&7&2&0&lᴏ&x&E&B&B&8&1&C&lʟ&x&E&A&B&9&1&8&lᴅ &x&E&8&B&B&1&1&lʙ&x&E&8&B&C&0&D&lᴀ&x&E&7&B&D&0&9&lʀ"
+    material: GOLD_INGOT
+    lore:
+      - '&7A Normal GOLD BAR.'
+      - ' '
+      - '&7 sell it for &2$250&7!'
+    custom-model-data: 99988
+
+  diamond_ore:
+    item-name: "&x&2&4&B&3&E&C&lᴅ&x&2&0&B&6&E&B&lɪ&x&1&B&B&8&E&A&lᴀ&x&1&7&B&B&E&A&lᴍ&x&1&2&B&E&E&9&lᴏ&x&0&E&C&0&E&8&lɴ&x&0&9&C&3&E&7&lᴅ"
+    material: DIAMOND
+    lore:
+      - '&7Diamond.'
+      - ' '
+      - '&7 sell it for &2$500&7!'
+    custom-model-data: 99988
+
+  pink_glazed_terracotta:
+    item-name: "&x&F&6&B&5&E&D&lʀᴏs&x&F&4&B&8&E&D&lᴇ ǫ&x&F&3&B&A&E&C&lᴜᴀʀ&x&F&1&B&D&E&C&lᴛᴢ &x&F&0&B&F&E&B&lᴄʀʏ&x&E&E&C&2&E&B&lsᴛᴀ&x&E&E&C&2&E&B&lʟ"
+    material: QUARTZ
+    lore:
+      - '&7A radiant crystal pulsing with arcane energy.'
+      - ' '
+      - '&7 sell it for &2$750&7!'
+    custom-model-data: 99988
+
+  red_glazed_terracotta:
+    item-name: "&x&B&0&1&C&1&C&lᴠ&x&A&C&1&F&1&A&lᴏ&x&A&8&2&2&1&8&lʟ&x&A&4&2&5&1&6&lᴄ&x&A&0&2&7&1&4&lᴀ&x&9&C&2&A&1&2&lɴ&x&9&8&2&D&1&0&lɪ&x&9&5&3&0&0&E&lᴄ &x&8&D&3&6&0&A&lᴅ&x&8&9&3&9&0&8&lᴇ&x&8&5&3&B&0&6&lʙ&x&8&1&3&E&0&4&lʀ&x&7&D&4&1&0&2&lɪ&x&7&9&4&4&0&0&ls"
+    material: NETHERITE_SCRAP
+    lore:
+      - '&7forged in lava.'
+      - ' '
+      - '&7 sell it for &2$1,200&7!'
+    custom-model-data: 99988
+
+  purple_glazed_terracotta:
+    item-name: "&x&9&D&3&8&F&3&lᴠᴏɪ&x&A&1&2&5&F&7&lᴅ ᴀ&x&A&5&1&3&F&B&lᴍᴇᴛ&x&A&9&0&0&F&F&lʜʏs&x&A&9&0&0&F&F&lᴛ"
+    material: AMETHYST_SHARD
+    lore:
+      - '&7A shard that hums with the power of the abyss.'
+      - ' '
+      - '&7 sell it for &2$1,800&7!'
+    custom-model-data: 99988
+
+  crying_obsidian:
+    item-name: "&x&5&4&1&C&B&0&lᴛᴇ&x&5&9&1&B&B&2&lᴀʀ&x&5&E&1&B&B&4&l ᴏ&x&6&3&1&A&B&6&lғ &x&6&9&1&9&B&8&lᴛʜ&x&6&E&1&8&B&A&lᴇ &x&7&3&1&8&B&C&lᴠᴏ&x&7&8&1&7&B&E&lɪᴅ"
+    material: ECHO_SHARD
+    lore:
+      - '&7A fragment of condensed void energy.'
+      - '&7The remnants of a shattered dimension.'
+      - ' '
+      - '&7 sell it for &2$2,500&7!'
+    custom-model-data: 99988
+# Tool skins configuration
+tool_skins:
+  pickaxe:
+    tier_1: 1001
+    tier_2: 1002
+    tier_3: 1003
+    tier_4: 1004
+    tier_5: 1005
+    tier_6: 1006
+    enchantment_explosive: 2001
+    enchantment_meteor: 2002
+    enchantment_haste: 2003
+  axe:
+    tier_1: 1101
+    tier_2: 1102
+    tier_3: 1103
+    tier_4: 1104
+    tier_5: 1105
+    tier_6: 1106
+    enchantment_explosive: 2101
+    enchantment_speed: 2102
+  hoe:
+    tier_1: 1201
+    tier_2: 1202
+    tier_3: 1203
+    tier_4: 1204
+    tier_5: 1205
+    tier_6: 1206
+    enchantment_speed: 2201
+    enchantment_airstrike: 2202
+
+# Customizable tool names and lore
+tool_names:
+  pickaxe:
+    tier_1: "§x§B§3§B§2§B§2§lsᴛᴏ§x§B§3§B§2§B§2§lɴᴇ §x§B§2§B§1§B§1§lᴘɪᴄ§x§B§2§B§1§B§1§lᴋᴀx§x§B§2§B§1§B§1§lᴇ"
+    tier_2: "§x§F§A§F§4§F§4§lɪʀᴏ§x§E§2§D§C§D§C§lɴ ᴘ§x§C§B§C§4§C§4§lɪᴄᴋ§x§B§3§A§C§A§C§lᴀxᴇ"
+    tier_3: "§x§E§F§A§1§0§F§lɢᴏʟ§x§F§0§A§1§1§4§lᴅᴇɴ§x§F§1§A§1§1§8§l ᴘɪ§x§F§2§A§1§1§D§lᴄᴋᴀ§x§F§2§A§1§1§D§lxᴇ"
+    tier_4: "§x§9§1§E§9§F§F§lᴅɪᴀ§x§8§B§E§3§F§F§lᴍᴏɴ§x§8§6§D§C§F§F§lᴅ ᴘ§x§8§0§D§6§F§F§lɪᴄᴋ§x§7§A§C§F§F§F§lᴀxᴇ"
+    tier_5: "§x§2§5§9§2§D§D§lᴏʙʟ§x§2§6§8§B§D§C§lɪᴠɪ§x§2§7§8§4§D§B§lᴏɴ’§x§2§7§7§C§D§A§ls ᴄ§x§2§8§7§5§D§9§lʟᴀᴡ"
+    tier_6: "§x§F§7§A§A§A§A§lɢʜᴀ§x§F§4§A§A§A§A§lsᴛ §x§F§0§A§A§A§A§lᴇxᴄ§x§E§D§A§A§A§A§lᴀᴠᴀ§x§E§D§A§A§A§A§lᴛᴏʀ"
+  axe:
+    tier_1: "§x§7§7§5§0§2§4§lᴡᴏ§x§7§D§5§4§2§6§lᴏᴅ§x§8§2§5§8§2§8§lᴇɴ§x§8§8§5§B§2§9§l ᴀ§x§8§D§5§F§2§B§lxᴇ"
+    tier_2: "§x§B§3§B§2§B§2§lsᴛ§x§B§3§B§2§B§2§lᴏɴ§x§B§2§B§2§B§2§lᴇ §x§B§2§B§1§B§1§lᴀx§x§B§2§B§1§B§1§lᴇ"
+    tier_3: "§x§F§A§F§4§F§4§lɪʀ§x§E§2§D§C§D§C§lᴏɴ§x§C§B§C§4§C§4§l ᴀ§x§B§3§A§C§A§C§lxᴇ"
+    tier_4: "§x§E§F§A§1§0§F§lɢᴏ§x§F§0§A§1§1§4§lʟᴅ§x§F§1§A§1§1§8§lᴇɴ§x§F§2§A§1§1§D§l ᴀ§x§F§3§A§1§2§1§lxᴇ"
+    tier_5: "§x§E§F§6§4§1§3§lᴛʜ§x§F§1§6§B§1§D§lᴇ §x§F§2§7§2§2§7§lᴋɪ§x§F§4§7§9§3§1§lɴɢ§x§F§5§7§F§3§B§l’s§x§F§7§8§6§4§5§l ʜ§x§F§8§8§D§4§F§lᴀᴛ§x§F§8§8§D§4§F§lᴄʜ§x§F§8§8§D§4§F§lᴇᴛ"
+    tier_6: "§x§F§7§A§A§A§A§lThe§x§F§4§A§A§A§A§l AX§x§F§2§A§A§A§A§lE O§x§E§F§A§A§A§A§lF P§x§E§D§A§A§A§A§lEAC§x§E§D§A§A§A§A§lE"
+  hoe:
+    tier_1: "§x§7§7§5§0§2§4§lᴡᴏᴏ§x§8§2§5§8§2§8§lᴅᴇɴ§x§8§D§5§F§2§B§l ʜᴏ§x§8§D§5§F§2§B§lᴇ"
+    tier_2: "§x§B§3§B§2§B§2§lsᴛᴏ§x§B§3§B§2§B§2§lɴᴇ §x§B§2§B§1§B§1§lʜᴏᴇ"
+    tier_3: "§x§F§A§F§4§F§4§lɪʀᴏ§x§F§D§F§A§F§A§lɴ ʜ§x§F§D§F§A§F§A§lᴏᴇ"
+    tier_4: "§x§E§F§A§1§0§F§lɢᴏʟ§x§F§1§A§1§1§8§lᴅᴇɴ§x§F§3§A§1§2§1§l ʜᴏ§x§F§3§A§1§2§1§lᴇ"
+    tier_5: "§x§F§1§7§5§1§1§lɢʜ§x§F§1§7§E§1§F§lᴀs§x§F§1§8§7§2§E§lᴛʟ§x§F§1§9§0§3§C§lᴏʀ§x§F§1§9§9§4§A§lᴅ'§x§F§1§A§2§5§8§ls §x§F§1§A§B§6§7§lsᴄ§x§F§1§B§4§7§5§lʏᴛ§x§F§1§B§D§8§3§lʜᴇ"
+    tier_6: "§x§F§7§A§A§A§A§lʙʟ§x§F§5§A§A§A§A§lᴏᴏ§x§F§2§A§A§A§A§lᴍᴡ§x§F§0§A§A§A§A§lʜɪ§x§E§D§A§A§A§A§lsᴘ§x§E§D§A§A§A§A§lᴇʀ"
+tool_lore:
+  pickaxe:
+    tier_1:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_2:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_3:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_4:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_5:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_6:
+      - "§7This pickaxe will your only friend in the mines"
+      - "§7and you might need to learn how to get used to it."
+      - "§7Use it to mine ores, grind for levels, and build your empire."
+      - ' '
+      - "§7Right-click to view enchantments"
+  axe:
+    tier_1:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_2:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_3:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_4:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_5:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_6:
+      - "§7This axe is your main method of thriving in the world."
+      - "§7Use it to chop down trees, gather resources, and ... have fun :>"
+      - ' '
+      - "§7Right-click to view enchantments"
+  hoe:
+    tier_1:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_2:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_3:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_4:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_5:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+    tier_6:
+      - "§7This hoe is your friend in the early game."
+      - "§7and you might be the fastest method of gathering resources."
+      - "§7Use it to harvest resources."
+      - ' '
+      - "§7Right-click to view enchantments"
+# Performance settings
+performance:
+  async_data_operations: true
+  cache_cleanup_interval: 300  # seconds
+  max_concurrent_animations: 10
+  packet_throttling: true
+  debug_mode: false
+
+# Plugin integration
+integrations:
+  protocollib:
+    required: true
+    packet_spam_protection: true
+  worldguard:
+    enabled: true
+    custom_flags: true
+  placeholderapi:
+    enabled: true
+    cache_placeholders: true
+    cache_duration: 5  # seconds
+  ghastlevels:
+    enabled: true
+    enforce_requirements: true
+    bypass_permission: "ghasttools.bypass.levelcheck"
+
+  ghastessence:
+    enabled: true
+    currency_name: "Essence"

@@ -1,0 +1,181 @@
+# GhastTools GUI Configuration
+
+gui:
+  title: "&f七七七七七七七七다&1"
+  size: 36  # Must be multiple of 9 (9, 18, 27, 36, 45, 54)
+
+  items:
+    # Preview tool slot - shows player's current tool (no click action)
+    preview_tool:
+      slot: 13
+      # Material, name, lore will be dynamically set based on player's tool
+
+    # Menu button 1 - Random Win GUI
+    menu_1:
+      material: GOLD_NUGGET
+      slot: 11
+      name: "&6&lRandom Enchantment"
+      lore:
+        - "&7Try your luck and roll a"
+        - "&7random enchantment for your tool!"
+        - ""
+        - "&7&lCost: &c50 Essence"
+        - "&7§lRequirements:"
+        - "&7- Must hold a Tool"
+        - "&7- Must have enough Essence"
+        - " "
+        - "&e&lClick to roll!"
+      model-data: 7011
+
+    # Menu button 2 - Enchantment Shop
+    menu_2:
+      material: EMERALD
+      name: "&5&lEnchantment Shop"
+      slot: 15
+      lore:
+        - "&7Don't want to risk bad luck?"
+        - "&7Browse powerful enchantments"
+        - "&7and purchase upgrades directly!"
+        - ""
+        - "&7&lFeatures:"
+        - "&7- Buy enchantments using Essence"
+        - "&7- Prices scale with enchant level"
+        - "&7- Tool tier requirements apply"
+        - ""
+        - "&e&lClick to shop!"
+      model-data: 50002
+
+    # Upgrade icon - main upgrade functionality
+    upgrade_icon:
+      material: GOLD_NUGGET
+      slots:
+        - 30
+        - 31
+        - 32
+      name: "&5&lUpgrade Your Tool"
+      lore:
+        - "&7Upgrade your current tool to the next tier!"
+        - "&7Stronger stats, more enchant potential."
+        - ""
+        - "&7&lNext Upgrade Requirements:"
+        - "&c💰 Money: &f{price}"
+        - "&4⭐ Level: &f{level}"
+        - ""
+        - "&e&lClick to upgrade!"
+      model-data: 7000
+
+      # Upgrade configurations for different tools and tiers
+      upgrades:
+        # Pickaxe upgrades
+        pickaxe_1_to_2:
+          type: pickaxe
+          current_tier: 1
+          target_tier: 2
+          level: 90
+          money: 200000
+        pickaxe_2_to_3:
+          type: pickaxe
+          current_tier: 2
+          target_tier: 3
+          level: 100
+          money: 350000
+        pickaxe_3_to_4:
+          type: pickaxe
+          current_tier: 3
+          target_tier: 4
+          level: 120
+          money: 500000
+        pickaxe_4_to_5:
+          type: pickaxe
+          current_tier: 4
+          target_tier: 5
+          level: 140
+          money: 1000000
+        pickaxe_5_to_6:
+          type: pickaxe
+          current_tier: 5
+          target_tier: 6
+          level: 160
+          money: 2500000
+
+        # Axe upgrades
+        axe_1_to_2:
+          type: axe
+          current_tier: 1
+          target_tier: 2
+          level: 55
+          money: 125000
+        axe_2_to_3:
+          type: axe
+          current_tier: 2
+          target_tier: 3
+          level: 60
+          money: 300000
+        axe_3_to_4:
+          type: axe
+          current_tier: 3
+          target_tier: 4
+          level: 65
+          money: 750000
+        axe_4_to_5:
+          type: axe
+          current_tier: 4
+          target_tier: 5
+          level: 70
+          money: 1500000
+        axe_5_to_6:
+          type: axe
+          current_tier: 5
+          target_tier: 6
+          level: 75
+          money: 3000000
+
+        # Hoe upgrades
+        hoe_1_to_2:
+          type: hoe
+          current_tier: 1
+          target_tier: 2
+          level: 15
+          money: 50000
+        hoe_2_to_3:
+          type: hoe
+          current_tier: 2
+          target_tier: 3
+          level: 25
+          money: 100000
+        hoe_3_to_4:
+          type: hoe
+          current_tier: 3
+          target_tier: 4
+          level: 40
+          money: 300000
+        hoe_4_to_5:
+          type: hoe
+          current_tier: 4
+          target_tier: 5
+          level: 50
+          money: 600000
+        hoe_5_to_6:
+          type: hoe
+          current_tier: 5
+          target_tier: 6
+          level: 60
+          money: 1500000
+
+    # Filler items (decorative)
+    filler:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+      slots:
+
+
+# Click delay settings
+click_delay:
+  enabled: true
+  delay_ticks: 10  # 0.5 seconds
+
+# Lock mechanism settings
+tool_lock:
+  enabled: true
+  lock_duration_ticks: 15  # 0.5 seconds after right-click
+  cleanup_interval_seconds: 300  # Clean up expired locks every 5 minutes

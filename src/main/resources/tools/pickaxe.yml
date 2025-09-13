@@ -1,0 +1,105 @@
+# Pickaxe Tool Configuration
+
+tools:
+  pickaxe:
+    tiers:
+      1:
+        material: STONE_PICKAXE
+        custom_model_data: 1001
+        durability_multiplier: 1.0
+        level_requirement: 85
+        # Player level required to use this tier
+      2:
+        material: IRON_PICKAXE
+        custom_model_data: 1002
+        durability_multiplier: 1.2
+        level_requirement: 90
+      3:
+        material: GOLDEN_PICKAXE
+        custom_model_data: 1003
+        durability_multiplier: 1.5
+        level_requirement: 100
+      4:
+        material: DIAMOND_PICKAXE
+        custom_model_data: 1004
+        durability_multiplier: 2.0
+        level_requirement: 120
+      5:
+        material: NETHERITE_PICKAXE
+        custom_model_data: 225251
+        durability_multiplier: 2.5
+        level_requirement: 140
+      6:
+        material: NETHERITE_PICKAXE
+        custom_model_data: 10191
+        durability_multiplier: 3.0
+        level_requirement: 160
+
+enchantments:
+  haste:
+    enabled: true
+    max_level: 6
+    description: "Gives you haste effect while holding the tool"
+    cooldown: 0
+    chance: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    haste_levels: [1, 2, 3, 4, 5, 6]
+
+
+  speed:
+    enabled: true
+    max_level: 6
+    description: "Gives you speed effect when triggered"
+    cooldown: 8000
+    chance: [0.10, 0.15, 0.20, 0.30, 0.40, 0.50]
+    duration: [6, 7, 8, 9, 10, 11]
+    amplifier: [0, 1, 1, 2, 2, 3]
+  xpboost:
+    enabled: true
+    max_level: 6
+    description: "Increases XP rewards from breaking blocks"
+    cooldown: 0
+    chance: [0.50, 0.55, 0.60, 0.65, 0.70, 0.75]
+    multiplier: [1.5, 1.8, 2.1, 2.4, 2.7, 3.0]
+  essenceboost:
+    enabled: true
+    max_level: 6
+    description: "Increases essence rewards from breaking blocks"
+    cooldown: 0
+    chance: [0.30, 0.35, 0.40, 0.45, 0.50, 0.55]
+    multiplier: [1.5, 1.8, 2.1, 2.4, 2.7, 3.0]
+  explosive:
+    enabled: true
+    max_level: 6
+    description: "Creates explosive effects that break blocks in a radius"
+    cooldown: 6000
+    chance: [0.05, 0.07, 0.10, 0.15, 0.20, 0.25]
+    radius: [6, 7, 8, 9, 10, 12]
+    particles: "EXPLOSION"
+    sound: "entity_generic_explode"
+  meteor:
+    enabled: true
+    max_level: 6
+    description: "Summons meteors from the sky that create massive destruction"
+    cooldown: 30000
+    chance: [0.002, 0.004, 0.006, 0.008, 0.012, 0.020]
+    radius: [12, 14, 16, 18, 20, 24]
+    max_active: 2
+    entity_type: "item_display"
+    animation: "spiral"
+    particles: "explosion"
+    sound: "entity_dragon_fireball_explode"
+    materials: ["GOLD_NUGGET", "GOLD_NUGGET", "GOLD_NUGGET", "GOLD_NUGGET", "GOLD_NUGGET", "GOLD_NUGGET"]
+    custom_model_data: [7003, 7003, 7003, 7003, 7003, 7003]
+    meteor_size: [3, 4, 5, 6, 7, 8]
+  airstrike:
+    enabled: true
+    max_level: 6
+    description: "Calls in airstrikes for area destruction"
+    cooldown: 30000
+    chance: [0.001, 0.002, 0.004, 0.006, 0.010, 0.015]
+    radius: [12, 14, 16, 18, 20, 24]
+    entity_type: "tnt"
+    animation: "circle"
+    max_active: 1
+    particles: "EXPLOSION"
+    sound: "entity_tnt_primed"

@@ -1,0 +1,219 @@
+package com.ghasttools.listeners;
+
+import com.ghasttools.GhastToolsPlugin;
+import com.ghasttools.data.PlayerData;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+
+/**
+ * FIXED: Block breaking events with proper milestone tracking and validation
+ */
+public class BlockBreakListener implements Listener {
+
+    private final GhastToolsPlugin plugin;
+
+    public BlockBreakListener(GhastToolsPlugin plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.isCancelled()) {
+            return;
+        }
+
+        final Player player = event.getPlayer();
+        final ItemStack tool = player.getInventory().getItemInMainHand();
+        final Block block = event.getBlock();
+        final Material originalBlockType = block.getType();
+
+        if (player == null || tool == null || block == null || originalBlockType == Material.AIR) {
+            return;
+        }
+
+        if (!plugin.getToolManager().isGhastTool(tool)) {
+            return;
+        }
+
+        final String toolType = plugin.getToolManager().getToolType(tool);
+        final int toolTier = plugin.getToolManager().getToolTier(tool);
+
+        if (toolType == null || toolTier <= 0) {
+            return;
+        }
+
+        if (!plugin.getToolManager().canUseToolType(player, toolType)) {
+            plugin.getMessageUtil().sendMessage(player, "no_permission_tool",
+                    Map.of("tool", toolType));
+            event.setCancelled(true);
+            return;
+        }
+
+        // FIXED: Comprehensive validation before allowing block break
+        if (!validateComprehensiveToolUsage(player, toolType, toolTier, originalBlockType, block)) {
+            event.setCancelled(true);
+            return;
+        }
+
+        // FIXED: Process block breaking with proper milestone tracking
+        processBlockBreaking(player, originalBlockType, tool, toolType, event);
+    }
+
+    /**
+     * FIXED: Comprehensive validation for tool usage including level, WorldGuard, and milestone requirements
+     */
+    private boolean validateComprehensiveToolUsage(Player player, String toolType, int toolTier,
+                                                   Material blockType, Block block) {
+        // 1. Check level requirement for tool tier
+        if (!player.hasPermission("ghasttools.bypass.levelcheck")) {
+            if (plugin.getLevelsHandler() != null) {
+                int requiredLevel = getRequiredLevelForTool(toolType, toolTier);
+
+                if (!plugin.getLevelsHandler().meetsLevelRequirement(player, requiredLevel)) {
+                    int playerLevel = plugin.getLevelsHandler().getPlayerLevel(player);
+                    player.sendMessage("§cYou cannot break blocks with this Tool!");
+                    player.sendMessage("§7Required level: " + requiredLevel + "   | Your level: " + playerLevel);
+                    return false;
+                }
+            }
+        }
+
+        // 2. Check WorldGuard permissions for specific block location
+        if (plugin.getWorldGuardHook() != null) {
+            if (!plugin.getWorldGuardHook().canUseTools(player, block.getLocation())) {
+                plugin.getMessageUtil().sendMessage(player, "worldguard_deny");
+                return false;
+            }
+        }
+
+        // 3. FIXED: For milestone materials, ensure player can actually break this specific block
+        if (plugin.getMilestoneManager() != null &&
+                plugin.getMilestoneManager().isTrackedMaterial(blockType)) {
+
+            // Additional validation for milestone materials
+            if (!canPlayerBreakMilestoneBlock(player, blockType, block)) {
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * FIXED: Check if player can break this specific milestone block
+     */
+    private boolean canPlayerBreakMilestoneBlock(Player player, Material blockType, Block block) {
+        // Check if player is in valid WorldGuard region for this block
+        if (plugin.getWorldGuardHook() != null) {
+            if (!plugin.getWorldGuardHook().canUseTools(player, block.getLocation())) {
+                return false;
+            }
+        }
+
+        // Check if player's tool level allows breaking this block type
+        ItemStack tool = player.getInventory().getItemInMainHand();
+        if (tool == null || !plugin.getToolManager().isGhastTool(tool)) {
+            return false;
+        }
+
+        String toolType = plugin.getToolManager().getToolType(tool);
+        int toolTier = plugin.getToolManager().getToolTier(tool);
+
+        if (toolType == null || toolTier <= 0) {
+            return false;
+        }
+
+        // Check if player can use this tool tier
+        if (!plugin.getToolManager().canUseToolTier(player, toolType, toolTier)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * FIXED: Get required level for tool tier
+     */
+    private int getRequiredLevelForTool(String toolType, int toolTier) {
+        try {
+            var toolConfig = plugin.getToolManager().getToolConfigs().get(toolType);
+            if (toolConfig != null) {
+                var tierConfig = toolConfig.getTier(toolTier);
+                if (tierConfig != null) {
+                    return tierConfig.getLevelRequirement();
+                }
+            }
+        } catch (Exception e) {
+            plugin.getLogger().fine("Error getting level requirement: " + e.getMessage());
+        }
+        return 1;
+    }
+
+    /**
+     * FIXED: Process block breaking with proper milestone tracking and data saving
+     */
+    private void processBlockBreaking(Player player, Material originalBlockType, ItemStack tool, String toolType, BlockBreakEvent event) {
+        CompletableFuture<PlayerData> playerDataFuture = plugin.getDataManager().loadPlayerData(player.getUniqueId());
+
+        playerDataFuture.thenAccept(playerData -> {
+            try {
+                plugin.getServer().getScheduler().runTask(plugin, () -> {
+                    try {
+                        playerData.addBlocksBroken(1);
+                        playerData.incrementToolUsage(toolType);
+                        playerData.updateLastSeen();
+
+                        // FIXED: Track milestone FIRST by adding to PlayerData
+                        if (plugin.getMilestoneManager() != null &&
+                                plugin.getMilestoneManager().isTrackedMaterial(originalBlockType)) {
+
+                            // Add to PlayerData first (this saves to database)
+                            playerData.addMilestoneBlocksBroken(originalBlockType, 1);
+
+
+                        }
+
+                        // Process enchantments (excluding haste which is passive)
+                        Map<String, Integer> enchantments = plugin.getToolManager().getToolEnchantments(tool);
+                        for (String enchantment : enchantments.keySet()) {
+                            if (!enchantment.equals("haste")) {
+                                plugin.getEnchantmentManager().triggerEnchantment(player, tool, enchantment, event);
+                            }
+                        }
+
+                        // FIXED: Save player data first, then trigger milestone tracking
+                        plugin.getDataManager().savePlayerData(player.getUniqueId(), playerData).thenRun(() -> {
+                            // FIXED: Track with milestone manager AFTER data is saved
+                            if (plugin.getMilestoneManager() != null &&
+                                    plugin.getMilestoneManager().isTrackedMaterial(originalBlockType)) {
+                                plugin.getMilestoneManager().trackBlockBreak(player, originalBlockType, 1);
+                            }
+                        }).exceptionally(throwable -> {
+                            plugin.getLogger().log(Level.WARNING, "Failed to save player data for " + player.getName(), throwable);
+                            return null;
+                        });
+
+                    } catch (Exception e) {
+                        plugin.getLogger().log(Level.SEVERE, "Error processing block break event for player " + player.getName(), e);
+                    }
+                });
+            } catch (Exception e) {
+                plugin.getLogger().log(Level.SEVERE, "Error in block break async processing for player " + player.getName(), e);
+            }
+        }).exceptionally(throwable -> {
+            plugin.getLogger().log(Level.SEVERE, "Failed to load player data for " + player.getName(), throwable);
+            return null;
+        });
+    }
+}
