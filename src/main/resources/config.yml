@@ -471,3 +471,15 @@ integrations:
   ghastessence:
     enabled: true
     currency_name: "Essence"
+
+# Block level requirements - minimum level needed to break specific blocks
+block-level-requirements:
+  coal_ore: 100
+  iron_ore: 120
+  gold_ore: 140
+  diamond_ore: 160
+  emerald_ore: 180
+  redstone_ore: 150
+  lapis_ore: 130
+  copper_ore: 110
+  # Add any other blocks that should have level requirements

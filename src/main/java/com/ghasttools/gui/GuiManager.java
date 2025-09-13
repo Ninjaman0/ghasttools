@@ -3,9 +3,11 @@ package com.ghasttools.gui;
 import com.ghasttools.GhastToolsPlugin;
 import com.ghasttools.data.LockedTool;
 import com.ghasttools.levelsmanager.levelshandler;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,6 +34,9 @@ public class GuiManager {
     private final RandomWinGui randomWinGui;
     private final ShopGui shopGui;
     private final AtomicBoolean isShuttingDown = new AtomicBoolean(false);
+    
+    // Vault Economy integration
+    private Economy economy = null;
 
     // Tool lock mechanism
     private final ConcurrentHashMap<UUID, LockedTool> lockedTools = new ConcurrentHashMap<>();
@@ -53,7 +58,37 @@ public class GuiManager {
         this.shopGui = new ShopGui(plugin, levelsHandler);
 
         loadConfiguration();
+        setupEconomy();
         startCleanupTask();
+    }
+
+    /**
+     * Setup Vault economy integration with proper error handling
+     */
+    private void setupEconomy() {
+        if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+            plugin.getLogger().warning("Vault not found! Economy features will be disabled.");
+            return;
+        }
+
+        try {
+            RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
+            if (rsp == null) {
+                plugin.getLogger().warning("No economy provider found! Economy features will be disabled.");
+                return;
+            }
+
+            economy = rsp.getProvider();
+            if (economy == null) {
+                plugin.getLogger().warning("Failed to get economy provider! Economy features will be disabled.");
+                return;
+            }
+
+            plugin.getLogger().info("Successfully hooked into Vault economy: " + economy.getName());
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.SEVERE, "Error setting up Vault economy integration", e);
+            economy = null;
+        }
     }
 
     /**
@@ -779,13 +814,17 @@ public class GuiManager {
     }
 
     /**
-     * Check if player has enough money (implement with your economy plugin)
+     * Check if player has enough money using Vault economy
      */
     private boolean hasEnoughMoney(Player player, long amount) {
         try {
-            // For now, return true (implement with your economy plugin)
-            // You can integrate with Vault or your custom economy system here
-            return true;
+            if (economy == null) {
+                plugin.getLogger().warning("Economy not available for balance check");
+                return false;
+            }
+
+            double balance = economy.getBalance(player);
+            return balance >= amount;
         } catch (Exception e) {
             plugin.getLogger().log(Level.WARNING, "Error checking money for " + player.getName(), e);
             return false;
@@ -793,17 +832,67 @@ public class GuiManager {
     }
 
     /**
-     * Withdraw money from player (implement with your economy plugin)
+     * Withdraw money from player using Vault economy
      */
     private boolean withdrawMoney(Player player, long amount) {
         try {
-            // For now, return true (implement with your economy plugin)
-            // You can integrate with Vault or your custom economy system here
-            return true;
+            if (economy == null) {
+                plugin.getLogger().warning("Economy not available for money withdrawal");
+                return false;
+            }
+
+            if (!hasEnoughMoney(player, amount)) {
+                double balance = economy.getBalance(player);
+                player.sendMessage("§cInsufficient funds! Required: " + formatNumber(amount) + 
+                                 " | Your balance: " + formatNumber((long)balance));
+                return false;
+            }
+
+            var response = economy.withdrawPlayer(player, amount);
+            if (response.transactionSuccess()) {
+                plugin.getLogger().info("Successfully withdrew " + amount + " from " + player.getName() + 
+                                      " (New balance: " + economy.getBalance(player) + ")");
+                return true;
+            } else {
+                plugin.getLogger().warning("Economy withdrawal failed for " + player.getName() + 
+                                         ": " + response.errorMessage);
+                player.sendMessage("§cTransaction failed: " + response.errorMessage);
+                return false;
+            }
         } catch (Exception e) {
             plugin.getLogger().log(Level.WARNING, "Error withdrawing money for " + player.getName(), e);
+            player.sendMessage("§cAn error occurred during the transaction!");
             return false;
         }
+    }
+
+    /**
+     * Get player's current balance for display
+     */
+    public double getPlayerBalance(Player player) {
+        try {
+            if (economy == null) {
+                return 0.0;
+            }
+            return economy.getBalance(player);
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.WARNING, "Error getting balance for " + player.getName(), e);
+            return 0.0;
+        }
+    }
+
+    /**
+     * Check if economy is available
+     */
+    public boolean isEconomyAvailable() {
+        return economy != null;
+    }
+
+    /**
+     * Get economy provider name for debugging
+     */
+    public String getEconomyProviderName() {
+        return economy != null ? economy.getName() : "None";
     }
 
     /**

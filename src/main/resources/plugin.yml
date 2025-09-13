@@ -8,10 +8,12 @@ author: Ninja0_0
 loadbefore:
   - WorldGuard
 
+depend:
+  - Vault
+
 softdepend:
   - WorldGuard
   - PlaceholderAPI
-  - Vault
   - ProtocolLib
   - GhastLevels
   - GhastEssence

@@ -12,6 +12,16 @@ shop:
   items:
     preview_item: 4 # the preview item slot .. same preview item as the one in the main class
 
+    # Close button configuration
+    close_item:
+      material: BARRIER
+      slot: [49]  # Can be single integer or list of integers
+      name: "&c&lClose Menu"
+      custom-model-data: 0
+      lore:
+        - "&7Click to close this menu"
+        - "&7and return to upgrade GUI"
+
     enchantment:
       haste:
         material: GOLDEN_PICKAXE
